@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'simplecov',           '~> 0.9.2'
   s.add_development_dependency 'redis-activesupport', '~> 4.1.5'
   s.add_development_dependency 'httparty',            '~> 0.13.7'
-  s.add_development_dependency 'yard',                '~> 0.8'
+  s.add_development_dependency 'yard',                '~> 0.9.11'
   s.add_development_dependency 'redcarpet',           '~> 3.3.4'
 
   s.files         = `git ls-files`.split("\n")

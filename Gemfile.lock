@@ -189,7 +189,7 @@ GEM
     tins (1.8.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    yard (0.8.7.6)
+    yard (0.9.16)
 
 PLATFORMS
   ruby
@@ -205,7 +205,7 @@ DEPENDENCIES
   sidekiq (~> 3.5.2)
   simplecov (~> 0.9.2)
   sinatra (~> 1.4.6)
-  yard (~> 0.8)
+  yard (~> 0.9.11)
 
 BUNDLED WITH
    1.16.1
