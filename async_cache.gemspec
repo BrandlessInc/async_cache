@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'sourcify', '~> 0.5.0'
 
-  s.add_development_dependency 'rails',               '~> 4.2.4'
+  s.add_development_dependency 'rails',               '>= 4.2.5.2'
   s.add_development_dependency 'sidekiq',             '~> 3.5.2'
   s.add_development_dependency 'sinatra',             '~> 1.4.6'
   s.add_development_dependency 'rspec',               '~> 3.4.0'
