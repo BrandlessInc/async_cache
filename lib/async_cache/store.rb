@@ -36,37 +36,37 @@ module AsyncCache
     # @param [Hash] options
     # @yield [*arguments in options[:arguments]] Called if entry out-of-date
     def fetch(locator, version, options = {}, &block)
-      options = options.dup  # Duplicate to avoid side effects
+      options = options.dup # Duplicate to avoid side effects
       version = version.to_i # Versions must *always* be convertible to integers
 
       # Expires-in must be an integer if present, nil if not
       expires_in = options[:expires_in] ? options[:expires_in].to_i : nil
 
-      block_source    = block.to_source
+      block_source = block.to_source
       block_arguments = check_arguments(options.delete(:arguments) || [])
 
       # Serialize arguments into the full cache key
-      key = ActiveSupport::Cache.expand_cache_key [
+      key = ActiveSupport::Cache.expand_cache_key([
         Store.base_cache_key(locator, block_source),
         block_arguments
-      ].flatten
+      ].flatten)
 
       cached_data, cached_version = @backend.read key
 
       strategy = determine_strategy(
-        :has_cached_data   => !!cached_data,
-        :needs_regen       => version > (cached_version || 0),
-        :synchronous_regen => options[:synchronous_regen]
+        has_cached_data: !!cached_data,
+        needs_regen: version > (cached_version || 0),
+        synchronous_regen: options[:synchronous_regen]
       )
 
       return cached_data if strategy == :current
 
       context = {
-        :key          => key,
-        :version      => version,
-        :expires_in   => expires_in,
-        :block_source => block_source,
-        :arguments    => block_arguments
+        key: key,
+        version: version,
+        expires_in: expires_in,
+        block_source: block_source,
+        arguments: block_arguments
       }
 
       case strategy
@@ -117,17 +117,17 @@ module AsyncCache
 
     def enqueue_generation(key:, version:, expires_in:, block_source:, arguments:)
       worker_klass.enqueue_async_job(
-        key:        key,
-        version:    version,
+        key: key,
+        version: version,
         expires_in: expires_in,
-        block:      block_source,
-        arguments:  arguments
+        block: block_source,
+        arguments: arguments
       )
     end
 
     def inspect
-      pointer_format  = '0x%014x'
-      pointer         = Kernel.sprintf pointer_format, self.object_id * 2
+      pointer_format = '0x%014x'
+      pointer = Kernel.sprintf pointer_format, self.object_id * 2
       backend_pointer = Kernel.sprintf pointer_format, @backend.object_id * 2
 
       '#<' + [
@@ -141,10 +141,10 @@ module AsyncCache
     # of the block source. This ensures that if the implementation (block)
     # changes then the cache key will also change.
     def self.base_cache_key(locator, block_source)
-      ActiveSupport::Cache.expand_cache_key [
+      ActiveSupport::Cache.expand_cache_key([
         locator,
         Digest::MD5.hexdigest(block_source)
-      ]
+      ])
     end
 
     private
