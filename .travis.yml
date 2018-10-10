@@ -1,13 +1,17 @@
 sudo: false
 language: ruby
 cache: bundler
-rvm:
-  - '2.2.1'
-  - '2.2.3'
-  - '2.3.0'
 
 services:
   - redis-server
+
+gemfile:
+  - gemfiles/rails_4.gemfile
+  - gemfiles/rails_5.gemfile
+
+rvm:
+  - '2.5.1'
+  - '2.4.4'
 
 before_script:
   - bundle exec ruby spec/integration/support/run_all.rb &
