@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'appraisal',           '~> 2.2.0'
   s.add_development_dependency 'rails',               '~> 5.0.1'
   s.add_development_dependency 'sidekiq',             '~> 5.0.5'
+  s.add_development_dependency 'redis-namespace',     '~> 1.6.0'
   s.add_development_dependency 'sinatra',             '~> 2.0.4'
   s.add_development_dependency 'rspec',               '~> 3.4.0'
   s.add_development_dependency 'pry',                 '~> 0.10.1'
