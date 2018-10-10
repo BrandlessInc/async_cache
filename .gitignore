@@ -1,4 +1,5 @@
 *.gemfile.lock
+.bundle
 .DS_Store
 .yardoc
 coverage

@@ -7,7 +7,7 @@ services:
 
 gemfile:
   - gemfiles/rails_4.gemfile
-  - Gemfile
+  - gemfiles/rails_5.gemfile
 
 rvm:
   - '2.5.1'
